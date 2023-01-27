@@ -11,4 +11,4 @@ function checking(event) {
         alert("more than 20 characters");
         event.preventDefault();
     }
-};
+}

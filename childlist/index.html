@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutation Observer - Attribute Filter</title>
+</head>
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    #heading {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #edited {
+        display: none;
+        width: 70%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px gray;
+        background-color: #ecf7c5;
+    }
+
+    #edited button {
+        padding: 10px;
+        text-align: center;
+        width: 10%;
+        background-color: blue;
+        color: white;
+        border: 1px solid blue;
+        border-radius: 5px;
+        font-weight: bolder;
+    }
+
+    #container {
+        width: 50%;
+        margin: 0 auto;
+        background-color: #a1fdfd;
+        position: relative;
+        padding: 20px;
+    }
+
+    #message {
+        margin: 20px auto;
+        font-weight: bolder;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="heading">
+            <h1>Mutation Observer - <i>Attribute Filter
+                </i></h1>
+        </div>
+        <!-- <select name="message" id="message">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select> -->
+        <div id="message">
+            <h4 id="comments">Attribute</h4>
+        </div>
+        <div id="message">
+            <label for="username">Username</label>
+            <input id="comments" type="text" disabled value="text" name="textName">
+        </div>
+        <div id="edited">
+            <h4>MUTATION OBSERVERED</h4>
+            <!-- <h5><strong>You have added one more OPTION in SELECTION tag</strong></h5> -->
+            <h5><strong>You have edited "name" Attribute <i>textName added</i> in input tag</strong></h5>
+            <p><strong>Attribute Old Value <i>"text"</i></strong></p>
+            <p><strong>Attribute New Value <i>"text added"</i></strong></p>
+            <button onclick="edit_hide()">OK</button>
+        </div>
+    </div>
+    <script src="../childlist/js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#total_container {
+    width: 40%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#chat_lists {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.edits {
+    position: absolute;
+    display: none;
+    border-radius: 7px 0px 7px 7px;
+    background-color: white;
+    padding: 5px 15px;
+
+    top: 30px;
+    right: 0px;
+
+    box-shadow: 0px 3px 3px gray;
+    border: 1px solid #d2d2d2;
+
+}
+
+.edits ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    font-size: 12px;
+}
+
+.hide_show {
+    display: block !important;
+}
+
+.textarea_container_map {
+    margin: 10px auto;
+}
+
+.textarea_text_map {
+    width: 100%;
+}
+
+.submit_container_map {
+    /* width: 100%; */
+    text-align: center;
+    margin: 10px auto;
+}
+
+.submit_button_map {
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.container {
+    width: 100%;
+    /* margin: 0 auto; */
+    /* overflow: hidden; */
+    display: flex;
+}
+
+.image_container {
+    /* text-align: left; */
+    width: 10%;
+    /* overflow: hidden; */
+}
+
+.img,
+.image_container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+
+.chat_container {
+    width: 90%;
+    border-radius: 0px 5px 5px 5px;
+    /* overflow: hidden; */
+}
+
+.user_info_container {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.user_name_div {
+    display: flex;
+    width: 100%;
+}
+
+.user_name {
+    width: 80%;
+}
+
+.user_name_text,
+.user_name span {
+    width: 80%;
+}
+
+.timing {
+    width: 20%;
+    /* overflow: hidden; */
+    display: flex;
+    color: grey;
+}
+
+.timing_span,
+.timing_span span {
+    font-size: 14px;
+    color: gray;
+    line-height: 16px;
+}
+
+.dots_span {
+    /* background-color: blue; */
+}
+
+.dots_sup_map {
+    color: gray;
+}
+
+.dots_strong_map {
+    font-size: 15px;
+}
+
+.comments_div {
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+
+.comments_div p {
+    color: gray;
+}
+
+/* #comments_name_map {
+    display: none;
+} */
+
+#show_comments {
+    /* display: block; */
+}
+
+.short_text_p_map {
+    /* display: block; */
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.like_reply_map {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+.like_map {
+    width: 15%;
+    display: flex;
+}
+
+.like_img_maps {
+    display: flex;
+}
+
+.like_button_map,
+.like_map button {
+    border: none;
+    background-color: #ffffff;
+    color: grey;
+    margin-right: 5px;
+}
+
+.like_map span img {
+    display: none;
+    padding-top: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+.like_emoji_map {
+    padding-top: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+.like_img_maps {
+    display: none;
+}
+
+.line_map {
+    height: 15px;
+    color: grey;
+}
+
+.reply_map {
+    width: 15%;
+    text-align: center;
+}
+
+.reply_btn_map,
+.reply_map button {
+    border: none;
+    background-color: #ffffff;
+    color: grey;
+}
+
+.long_text {
+    display: none;
+}
+
+.long_text_div {
+    /* background-color: bisque; */
+}
+
+#current_time {
+    font-size: 12px;
+    font-weight: 100;
+    padding: 4px;
+}
+
+#toggle_dots {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+}
+
+#short_text {
+    color: grey;
+}

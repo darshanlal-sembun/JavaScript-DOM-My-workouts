@@ -1,6 +1,6 @@
 var focus_text = document.getElementById("text_focus");
 
-focus_text.addEventListener("focus", textfocusin);
+focus_text.addEventListener("focusin", textfocusin);
 focus_text.addEventListener("focusout", textfocusout);
 
 function textfocusin() {

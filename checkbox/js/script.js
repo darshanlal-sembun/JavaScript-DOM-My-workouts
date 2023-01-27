@@ -9,6 +9,5 @@ function testing() {
     checkboxes.forEach((checkbox) => {
         values.push(checkbox.value);
     });
-
-    alert("checked" + values);
+    alert("checked" + " " + values);
 };

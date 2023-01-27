@@ -1,7 +1,6 @@
 var testing = document.getElementById("text_check");
-testing.addEventListener("keyup", checking);
+testing.addEventListener("keypress", function () { checking(this) });
 
-
-function checking() {
-    alert("Entered String is : " + " " + testing.value + "\n" + "String Length is : " + " " + testing.value.length);
+function checking(event) {
+    alert("Entered String is : " + " " + event.value + "\n" + "String Length is : " + " " + event.value.length);
 };

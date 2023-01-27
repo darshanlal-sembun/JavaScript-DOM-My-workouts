@@ -1,5 +1,5 @@
 var district = document.getElementById("district");
-district.addEventListener("click", function () { dropdown(this) });
+district.addEventListener("change", function () { dropdown(this) });
 
 function dropdown(event) {
     var selected = event.selectedIndex;

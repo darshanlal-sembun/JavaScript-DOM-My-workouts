@@ -1,28 +1,23 @@
 var user_name = document.getElementById("username");
-user_name.addEventListener("keypress", username);
 
+user_name.addEventListener("keypress", username);
+var ab;
 function username(event) {
-    //alert(event.target.value);
     if (((event.keyCode > 64) && (event.keyCode <= 90)) || ((event.keyCode > 96) && (event.keyCode <= 122))) {
         return true;
-        // alert("Entered Number is : " + event.key + "\n" + " Number's keycode is : " + event.keyCode);
     }
     else {
         event.preventDefault();
         alert("Enter Only Alphabets");
     }
-
-    //return event.value;
 };
-
 
 var age = document.getElementById("age");
 age.addEventListener("keypress", user_age);
 
 function user_age(event) {
     if ((((event.keyCode > 48) && (event.keyCode <= 57))) && (age.value.length < 2)) {
-        // alert("Entered Number is : " + event.key + "\n" + " Number's keycode is : " + event.keyCode);
-        console.log(age.value);
+        return true;
     }
     else {
         event.preventDefault();
@@ -30,10 +25,11 @@ function user_age(event) {
     }
 };
 
-
-var gender = document.getElementsByName("gender").forEach(function (event) {
-    event.addEventListener("change", function () {
-        alert("You have selected" + " " + event.value + " " + "Gender");
+var gender_value;
+var gender = document.getElementsByName("gender").forEach(function (e) {
+    e.addEventListener("change", function () {
+        gender_value = e.value;
+       // alert("You have selected" + " " + gender_value + " " + "Gender");
     });
 });
 
@@ -43,7 +39,7 @@ mobile.addEventListener("keypress", user_mobile);
 
 function user_mobile(event) {
     if (((event.keyCode > 47) && (event.keyCode <= 57)) && (mobile.value.length < 10)) {
-
+        return true;
     }
     else {
         event.preventDefault();
@@ -56,7 +52,7 @@ aadhar.addEventListener("keypress", user_aadhar);
 
 function user_aadhar(event) {
     if (((event.keyCode > 47) && (event.keyCode <= 57)) && (aadhar.value.length < 12)) {
-
+        return true;
     }
     else {
         event.preventDefault();
@@ -69,11 +65,10 @@ email.addEventListener("focusout", user_email);
 
 function user_email() {
     const emailField = email.value;
-    alert(emailField);
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (email.value.match(mailformat)) {
-        alert("Valid email address!");
-        //return true;
+    if (emailField.match(mailformat)) {
+      //  alert("Valid email address!");
+        return true;
     }
     else {
         alert("You have entered an invalid email address!");
@@ -82,47 +77,58 @@ function user_email() {
 
 var interest = document.getElementsByName("interest");
 for (i = 0; i < interest.length; i++) {
-    interest[i].addEventListener("click", user_interest);
+    interest[i].addEventListener("change", user_interest);
 };
 
-function user_interest() {
-    let interest_checked = document.querySelectorAll('input[name="interest"]:checked');
-    let values = [];
-    interest_checked.forEach((interest) => {
-        values.push(interest.value);
-    });
+var interest_values;
+let interest_checked;
 
-    alert("checked" + values);
-    // alert(e.value);
+function user_interest() {
+    interest_checked = document.querySelectorAll('input[name="interest"]:checked');
+    interest_values = [];
+    interest_checked.forEach((interest) => {
+
+        interest_values.push(interest.value);
+    });
+    // alert(interest_values.length);
 };
 
 var state = document.getElementById("state");
-console.log(state);
-state.addEventListener("click", function () { dropdown(this) });
+state.addEventListener("change", function () { state_dropdown(this) });
+// state.addEventListener("change", dropdown);
+var state_selected;
+var state_option;
+var state_name;
 
-function dropdown(event) {
-    var selected = event.selectedIndex;
-    var option = event.options;
-    alert("Index: " + option[selected].index + " is " + option[selected].text);
+function state_dropdown(event) {
+    // console.log(event.target);
+    state_selected = event.selectedIndex;
+    state_option = event.options;
+    state_name = state_option[state_selected];
+   // alert("Index: " + state_option[state_selected].index + " is " + state_option[state_selected].text);
+   // alert(state_name.value);
 };
 
 var district = document.getElementById("district");
-console.log(district);
-state.addEventListener("click", function () { dropdown(this) });
+district.addEventListener("change", function () { district_dropdown(this) });
 
-function dropdown(event) {
-    var selected = event.selectedIndex;
-    var option = event.options;
-    alert("Index: " + option[selected].index + " is " + option[selected].text);
-};
+var district_selected;
+var district_option;
+
+function district_dropdown(event) {
+    district_selected = event.selectedIndex;
+    district_option = event.options;
+    district_name = district_option[district_selected];
+  //  alert(district_name.value);
+    // alert("Index: " + district_option[district_selected].index + " is " + district_option[district_selected].text);
+}
 
 var country = document.getElementById("Country");
 country.addEventListener("keypress", user_country);
 
 function user_country(event) {
-    // alert(event.target.value);
     if (((event.keyCode > 64) && (event.keyCode <= 90)) || ((event.keyCode > 96) && (event.keyCode <= 122))) {
-        // alert("Entered Number is : " + event.key + "\n" + " Number's keycode is : " + event.keyCode);
+        return true;
     }
     else {
         event.preventDefault();
@@ -132,25 +138,26 @@ function user_country(event) {
 
 var address = document.getElementById("address");
 console.log(address);
-address.addEventListener("focusout", user_address);
+address.addEventListener("change", user_address);
 
 function user_address() {
-    alert(address.value);
+   // alert(address.value);
 };
 
 var comments = document.getElementById("comments");
-console.log(comments);
-comments.addEventListener("focusout", user_comments);
+comments.addEventListener("change", user_comments);
 
-function user_comments() {
-    alert(comments.value);
+var comments_value;
+
+function user_comments(event) {
+   // alert(event.value);
+    // alert(comments_value = event.value);
 };
 
 var reset = document.getElementById("reset_btn");
 reset.addEventListener("click", reset_all);
 
 function reset_all() {
-    //  document.getElementsByTagNameNS("form").reset();
     document.getElementById("myForm").reset();
 };
 
@@ -161,17 +168,18 @@ function submit_all() {
     //console.log(document.body.form);
     // var total_form = document.getElementById("myform");
     //console.log(total_form.username.value);
-
+    // console.log(x);
     if (user_name.value == '') {
         alert("please enter your Username");
     }
     else if (age.value == '') {
         alert("please enter your Age");
     }
-    else if (gender.value == '') {
+    //console.log(x);
+    else if ((gender_value == '') || (gender_value == undefined)) {
         alert("please enter your Gender");
     }
-    else if (mobile.target.value == '') {
+    else if (mobile.value == '') {
         alert("please enter your Mobile");
     }
     else if (aadhar.value == '') {
@@ -180,13 +188,13 @@ function submit_all() {
     else if (email.value == '') {
         alert("please enter your Email");
     }
-    else if (interest.value == '') {
+    else if ((interest_values == '') || (interest_values == undefined)) {
         alert("please enter your Interest");
     }
-    else if (state.value == '') {
+    else if ( (state_name.value == '') || (state_name.value == "none") ){
         alert("please enter your State");
     }
-    else if (district.value == '') {
+    else if ((district_name.value == '') || (district_name.value == "none")) {
         alert("please enter your District");
     }
     else if (country.value == '') {
@@ -199,6 +207,21 @@ function submit_all() {
         alert("please enter your Comments");
     }
     else {
-        alert("ok");
+      //  alert("ok");
+
+
+        alert(
+            "Name is  :  " + " " + user_name.value + "\n" +
+            "Age is :  " + " " + age.value + "\n" +
+            "Gender is :  " + " " + gender_value + "\n" +
+            "Mobile Number is : " + " " + mobile.value + "\n" +
+            "Aadhar Number is : " + " " + aadhar.value + "\n" +
+            "Email ID is : " + " " + email.value + "\n" +
+            "Interested Area is : " + " " + interest_values + "\n" +
+            "State is : " + " " + state_name.value + "\n" +
+            "District is : " + " " + district_name.value + "\n" +
+            "Country is : " + " " + country.value + "\n" +
+            "Address is : " + " " + address.value + "\n" +
+            "Comments is : " + " " + comments.value + "\n");
     }
 };
