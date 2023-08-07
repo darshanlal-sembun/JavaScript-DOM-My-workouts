@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked in Clone Comment Box</title>
+    <link rel="stylesheet" href="../linkedin clone/css/style.css">\
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="totalContainer">
+        <div id="commentsList">
+        </div>
+    </div>
+    <div id="tbl">
+        
+
+    </div>
+    <div id="editMenu">
+        <ul onclick="editDeleteOptions(event)">
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </div>
+    <script src="../linkedin clone/js/script.js"></script>
+</body>
+
+<script>
+
+    //https://api.coindesk.com/v1/bpi/currentprice.json
+
+    $.ajax({
+        type:'GET',
+        // url: "https://api.coindesk.com/v1/bpi/currentprice.json",
+        url: "https://api.publicapis.org/entries",
+        dataType:'text',
+        success:function(result){
+
+            console.log(result);
+            let jsonObj=JSON.parse(result);
+            console.log(jsonObj.count);
+            console.log(jsonObj.entries[0].API);
+
+            let tbl="";
+            tbl="<table><th>abc</th><tr><td>asdf</td></tr></table>";
+            let ele=document.getElementById("tbl");
+            ele.innerHTML=tbl;
+           
+        },
+        error:function(status,errorMessage){
+            console.log(errorMessage);
+        }
+
+    });
+
+
+</script>
+
+</html>

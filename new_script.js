@@ -1,12 +1,16 @@
+//var replyTextarea;
+
 function createElement(tagName, parentName) {
     let child = "";
     child = document.createElement(tagName);
     parentName.appendChild(child);
     return child;
 }
+
 function newTextareaValue() {
     textarea.value.length > 0 ? createComment(commentsList, textarea.value) : alert("Please Enter some comments in Text Box");
 }
+
 function createComment(parent, textareaValues) {
     let container = "", imageContainer = "", profilePicture = "", commentContainer = "", chatContainer = "", userNameContainer = "", userNameTiming = "";
     let userName = "", timing = "", currentTime = "", threeDots = "", message = "", likeReplyContainer = "", likeReplySubContainer = "", likeImageIcon = "";
@@ -86,18 +90,29 @@ function createComment(parent, textareaValues) {
     parent.prepend(fragment);
     textarea.value = "";
 }
-function replyComments(e) {
-    let elementTarget = e.target;
-    editFunction(elementTarget.closest(".likeReplyContainer"));
-    return true;
-}
-function content(textareaValues, message) {
-    let shortText = "", longText = "";
 
-    if (textareaValues.length > 100) {
+function replyComments(e) {
+    let replyContainer = "";
+    replyContainer = e.target.closest(".likeReplyContainer");
+    editFunction(replyContainer);
+}
+var commentListChild;
+
+function content(textareaValues, message) {
+    let shortText;
+    let longText;
+    let text;
+    let textLength;
+
+    text = textareaValues;
+    textLength = text.length;
+
+    if (textLength > 100) {
         shortText = document.createElement("span");
         shortText.setAttribute("class", "show");
-        shortText.innerText = textareaValues.substring(0, 100);
+
+        text = text.substring(0, 100);
+        shortText.innerText = text;
 
         seeMoreThreeDots = seeMoreLess("... See More");
         shortText.appendChild(seeMoreThreeDots);
@@ -105,71 +120,85 @@ function content(textareaValues, message) {
     }
     longText = document.createElement("span");
 
-    textareaValues.length > 100 ? longText.setAttribute("class", "hide") : longText.setAttribute("class", "show");
+    textLength > 100 ? longText.setAttribute("class", "hide") : longText.setAttribute("class", "show");
 
     longText.classList.add("longText");
 
-    longText.innerText = textareaValues.substring(0, textareaValues.length);
+    text = textareaValues.substring(0, textLength);
+    longText.innerText = text;
 
-    textareaValues.length > 100 ? longText.appendChild(seeMoreLess("... See Less")) : false;
+    textLength > 100 ? longText.appendChild(seeMoreLess("... See Less")) : false;
     message.appendChild(longText);
 }
+
 function seeMoreLess(textareaValuesText) {
-    let moreLess = "";
+    let moreLess;
+    let moreLessInnerText;
+    let moreLessParent;
 
     moreLess = document.createElement("a");
     moreLess.setAttribute("href", "#/");
-    moreLess.innerText = textareaValuesText;
-    moreLess.addEventListener("click", e => {
-        e.stopPropagation();
 
-        if (e.target.innerText === "... See More") {
-            e.target.parentElement.classList.add("hide");
-            e.target.parentElement.classList.remove("show");
-            e.target.parentElement.nextSibling.classList.remove("hide");
-            e.target.parentElement.nextSibling.classList.add("show");
-            return true;
+    moreLess.innerText = textareaValuesText;
+
+    moreLess.addEventListener("click", function (e) {
+        e.stopPropagation();
+        moreLessInnerText = e.target.innerText;
+        moreLessParent = e.target.parentElement;
+
+        if (moreLessInnerText === "... See More") {
+            moreLessParent.classList.add("hide");
+            moreLessParent.classList.remove("show");
+            moreLessParent.nextSibling.classList.remove("hide");
+            moreLessParent.nextSibling.classList.add("show");
         }
-        if (e.target.innerText === "... See Less") {
-            e.target.parentElement.classList.add("hide");
-            e.target.parentElement.classList.remove("show");
-            e.target.parentElement.previousSibling.classList.remove("hide");
-            e.target.parentElement.previousSibling.classList.add("show");
-            return true;
+        else if (moreLessInnerText === "... See Less") {
+            moreLessParent.classList.add("hide");
+            moreLessParent.classList.remove("show");
+            moreLessParent.previousSibling.classList.remove("hide");
+            moreLessParent.previousSibling.classList.add("show");
         }
     });
     return moreLess;
 }
-function editOptions(e) {
-    let editMenu = "", cloneEditMenu = "", elementTarget = e.target;
 
+function editOptions(e) {
+
+    let eTarget;
+    let editMenu;
+    let cloneEditMenu;
+
+    eTarget = e.target;
     editMenu = document.getElementById("editMenu");
     cloneEditMenu = editMenu.cloneNode(true);
-    elementTarget.appendChild(cloneEditMenu);
+    eTarget.appendChild(cloneEditMenu);
     show = document.querySelectorAll(".show");
+    console.log(show.length);
 
     for (i = 0; i < show.length; i++) {
+
         show[i].classList.contains("show") ? show[i].classList.remove("show") : false;
     }
     cloneEditMenu.classList.add("show");
 }
+
 function editDeleteOptions(e) {
-    let editDeleteContainer = "", elementTarget = e.target;
+    let editDeleteContainer = "";
 
-    editCommentList = elementTarget.closest(".commentList");
-    editDeleteContainer = elementTarget.closest(".container");
-    editLikeReplyContainer = elementTarget.closest(".likeReplyContainer");
+    editCommentList = e.target.closest(".commentList");
+    editDeleteContainer = e.target.closest(".container");
+    editLikeReplyContainer = e.target.closest(".likeReplyContainer");
 
-    if (elementTarget.innerText === "Edit") {
+    if (e.target.innerText === "Edit") {
 
         editCommentText = editDeleteContainer.querySelector(".longText").innerText;
 
         editFunction(editLikeReplyContainer, editCommentText);
 
         editCommentList.removeChild(editDeleteContainer);
-        return true;
+
     }
-    if (elementTarget.innerText === "Delete") {
+    else if (e.target.innerText === "Delete") {
         if (confirm("Are you sure to want to Delete?") == true) {
             editDeleteContainer.remove();
             return true;
@@ -180,16 +209,22 @@ function editDeleteOptions(e) {
     }
 }
 function editFunction(deleteContainer, editEdit = "") {
-    let editTextarea = "", editSubmitButtonContainer = "", editSubmitButton = "";
+    console.log(editEdit);
+    console.log(deleteContainer);
     if (deleteContainer == null) {
-        textarea.value = seeLessSeeMoreText(editEdit);
+        textarea.value = editEdit;
     }
     else {
-        if (deleteContainer.querySelector('.replyMap') == null) {
+
+        replycontains = deleteContainer.querySelector(".likeReplySubContainer");
+
+        checkk = deleteContainer.querySelector('.replyMap');
+
+        if (checkk == null) {
             reply = createElement("div", deleteContainer);
             reply.setAttribute("class", "replyMap");
 
-            editTextarea = createElement("textarea", reply);
+            let editTextarea = createElement("textarea", reply);
             editTextarea.setAttribute("cols", "30");
             editTextarea.setAttribute("rows", "5");
 
@@ -200,72 +235,72 @@ function editFunction(deleteContainer, editEdit = "") {
             editSubmitButton.setAttribute("class", "submitButton");
             editSubmitButton.innerText = "Reply";
 
-            deleteContainer.querySelector(".likeReplySubContainer").after(reply);
+            replycontains.after(reply);
 
             editTextarea.value = seeLessSeeMoreText(editEdit);
 
-            editSubmitButton.addEventListener("click", e => {
-                appendingSubmitComment(e, editTextarea.value);
-            });
-
-            editTextarea.addEventListener("keypress", e => {
-                if (e.keyCode === 13) {
-                    appendingSubmitComment(e, editTextarea.value);
-                    return true;
-                }
+            editSubmitButton.addEventListener("click", function (e) {
+                appendingSubmitComment(e, editTextarea.value)
             });
         }
     }
 }
+
 function seeLessSeeMoreText(totalLongText) {
+    let editEditText;
     if (totalLongText.length > 100) {
-        return totalLongText.substring(0, totalLongText.length - 12);
+        editEditText = totalLongText.substring(0, editEdit.length - 12)
     }
     else {
-        return totalLongText;
+        editEditText = totalLongText;
     }
+    return totalLongText;
 }
-function appendingSubmitComment(e, replyTextarea) {
-    let targetReplyMap = "", parent = "", commentListChild = "", elementTarget = e.target;
 
+function appendingSubmitComment(e, replyTextarea) {
+    let target;
+    let parent;
     if (replyTextarea.length > 0) {
-        targetReplyMap = elementTarget.closest(".replyMap");
-        parent = targetReplyMap.parentElement;
-        parent.removeChild(targetReplyMap);
-        commentListChild = parent.querySelector(".commentList");
+        target = e.target.closest(".replyMap");
+        parent = target.parentElement;
+        parent.removeChild(target);
+        var commentListChild = parent.querySelector(".commentList");
 
         if (commentListChild == null) {
             commentListChild = document.createElement("div");
             commentListChild.setAttribute("class", "commentList");
             parent.appendChild(commentListChild);
         }
+        console.log(parent);
+
         createComment(commentListChild, replyTextarea);
     }
     else {
         alert("Please Enter some comments in Text Box");
     }
 }
-function likePictureShow(e) {
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.parentElement);
-    let likeImage = "", likeCountContainer = "", likeCount = "", likeCountNumber = "", elementTarget = e.target;
-    if (elementTarget.nextSibling == null) {
-        likeImage = createElement("img", elementTarget.parentElement);
-        likeImage.setAttribute("src", "https://static.licdn.com/sc/h/8ekq8gho1ruaf8i7f86vd1ftt");
-        likeImage.setAttribute("class", "likeImage");
 
-        likeCountContainer = createElement("span", elementTarget.parentElement);
+function likePictureShow(e) {
+
+    let likeImage = "";
+    if (e.target.nextSibling == null) {
+        likeImage = createElement("img", e.target.parentElement);
+        likeImage.setAttribute("src", "https://static.licdn.com/sc/h/8ekq8gho1ruaf8i7f86vd1ftt");
+
+        let likeCountContainer = createElement("span", e.target.parentElement);
         likeCountContainer.setAttribute("class", "likeCountContainer");
         likeCountContainer.innerText = "1";
 
-        likeCount = elementTarget.parentElement.querySelector(".likeCountContainer").innerText;
-        likeCountNumber = parseInt(likeCount);
+        let likeCount = e.target.parentElement.querySelector(".likeCountContainer").innerText;
+        let likeCountNumber = parseInt(likeCount);
 
-        elementTarget.addEventListener("click", () => {
+        console.log(likeCountNumber);
+
+        e.target.addEventListener("click", likeCountFun);
+        function likeCountFun() {
             likeCountNumber += 1;
             likeCountContainer.innerText = likeCountNumber;
-        });
+        }
     }
 }
 (function () {
@@ -280,12 +315,7 @@ function likePictureShow(e) {
     textarea.setAttribute("class", "textarea");
     textarea.setAttribute("cols", "30");
     textarea.setAttribute("rows", "5");
-    textarea.addEventListener("keypress", e => {
-        if (e.keyCode === 13) {
-            newTextareaValue();
-            return true;
-        }
-    });
+
     submitButtonContainer = createElement("div", totalContainer);
     submitButtonContainer.setAttribute("class", "submitBtnContainer");
 

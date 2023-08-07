@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <button id="testingButton">check it</button>
     <script src="../table/js/script.js"></script>
+    <script>
+
+        var butt = document.createElement("button");
+        butt.innerText = "submit";
+        document.body.append(butt);
+        butt.addEventListener('click', function (e) {
+            console.log(e);
+        });
+        var testingButton = document.getElementById('testingButton');
+        console.log(testingButton);
+
+        testingButton.addEventListener('click', function (e) {
+            console.log(e);
+            e.target.innerText = "hxfg";
+        })
+    </script>
 </body>
+
 </html>

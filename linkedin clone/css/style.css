@@ -88,11 +88,11 @@ body {
 
 .message {
     padding: 10px;
+    word-wrap: break-word;
 }
 
-.likeReplyContainer {
-    padding: 5px;
-
+textarea {
+    width: 100%;
 }
 
 .likeReplySubContainer {
@@ -103,6 +103,10 @@ body {
 .likeImageIcon {
     display: flex;
     margin: 0 10px;
+}
+
+.likeImage {
+    margin: 0 5px;
 }
 
 .verticalLine {
@@ -157,4 +161,28 @@ body {
 
 .replyMap {
     margin-top: 20px;
+}
+
+.deleteContainer {
+    position: absolute;
+    background-color: #f7f5f5;
+    padding: 50px;
+    border-radius: 5px;
+    top: 200px;
+    left: 600px;
+}
+
+.deleteContent {
+    margin: 20px;
+    font-weight: bolder;
+}
+
+.deleteButtonContainer {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.likeCountContainer {
+    margin: 0 5px;
 }

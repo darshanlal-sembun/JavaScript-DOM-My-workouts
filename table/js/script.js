@@ -95,7 +95,6 @@ adding_column("MARTIN GARRIX", row2, "../table/images/mic-fill.svg");
 adding_column("NEW ORLEANS,LA", row2, "../table/images/geo-alt-fill.svg");
 adding_column_btn("SOLD OUT", row2);
 
-
 var show_events = document.createElement("div");
 show_events.style.width = "89%";
 show_events.style.cursor = "pointer";

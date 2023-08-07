@@ -246,9 +246,6 @@ function appendingSubmitComment(e, replyTextarea) {
     }
 }
 function likePictureShow(e) {
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.parentElement);
     let likeImage = "", likeCountContainer = "", likeCount = "", likeCountNumber = "", elementTarget = e.target;
     if (elementTarget.nextSibling == null) {
         likeImage = createElement("img", elementTarget.parentElement);

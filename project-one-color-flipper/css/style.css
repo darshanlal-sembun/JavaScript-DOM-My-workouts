@@ -1,0 +1,47 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+#totalContainer {
+    width: 80%;
+    margin: 0 auto;
+    background-color: red;
+}
+
+#container {
+    width: 50%;
+
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#backgroundContainer {
+    background-color: black;
+    color: white;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 3px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    letter-spacing: 3px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#buttonContainer {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {
+    padding: 5px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid aliceblue;
+    margin: 20px 0px;
+}
